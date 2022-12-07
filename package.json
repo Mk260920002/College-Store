@@ -5,15 +5,26 @@
   "author": "mukesh",
   "license": "MIT",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "watch": "^1.0.2"
   },
   "scripts": {
     "dev": "nodemon server.js",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "development": "mix",
+    "watch": "npx mix watch",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "browser-sync": "^2.27.10",
+    "browser-sync-webpack-plugin": "2.3.0",
+    "laravel-mix": "^6.0.49",
+    "nodemon": "^2.0.20",
+    "resolve-url-loader": "5.0.0",
+    "sass": "^1.56.1",
+    "sass-loader": "12.1.0"
   }
 }

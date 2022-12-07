@@ -1,0 +1,31 @@
+nav {
+  background-color: red;
+}
+
+nav li a:hover {
+  color: rgb(232, 124, 124);
+  transition: all 0.3s ease-in-out;
+}
+
+section.hero button {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(238, 9, 9);
+}
+section.hero button:hover {
+  background-color: rgb(232, 124, 124);
+}
+
+section.hero {
+  background: rgb(232, 124, 124);
+}
+
+.card-button {
+  border: solid;
+  text-align: center;
+  border-color: red;
+  color: red;
+}
+.card-button:hover {
+  background-color: red;
+  color: white;
+}

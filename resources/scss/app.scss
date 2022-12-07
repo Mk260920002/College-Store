@@ -1,0 +1,28 @@
+@import "./variable";
+nav{
+background-color: red;
+}
+nav li a:hover{
+    color: $first;
+    transition:$smooth;
+}
+section.hero button{
+   transition: $smooth;
+   &:hover{
+    background-color:$butnhover;
+   }
+   background-color: $butn; 
+}
+section.hero{
+   background: $first;
+}
+.card-button{
+   border:solid;
+   text-align: center;
+   border-color: red;
+   color: red;
+   &:hover{
+      background-color: red;
+      color:white;
+   }
+}
