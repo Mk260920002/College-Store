@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Food Crab</title>
+   
+    <link class="logo-img" rel="icon" href="img/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,100&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <nav
+      class=" flex items-center justify-between py-4 px-2 font-serif"
+    >
+      <ul class="flex items-center">
+        <li class="mx-1">
+          <a href="/"
+            ><img class="h-12 w-12 pb-3" src="img/logo.png" alt=""
+          /></a>
+        </li>
+        <li class="mx-1"><a href="/"> Food Crab </a></li>
+      </ul>
+
+      <div>
+        <ul class="flex justify-between">
+          <li class="mx-2"><a href="/">Menu</a></li>
+          <li class="mx-2"><a href="/login">login</a></li>
+          <li class="mx-2"><a href="/register">Register</a></li>
+          <li class="mx-2">
+            <a href="/cart">
+              <img style="width: 30px; height: 30px" src="img/cart.png" alt=""
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+   
+   <%- body -%>
+  <script src="js/app.js"></script>
+  </body>
+</html>

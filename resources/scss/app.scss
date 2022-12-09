@@ -26,3 +26,23 @@ section.hero{
       color:white;
    }
 }
+.primary-btn{
+   transition: $smooth;
+   &:hover{
+    background-color:$butnhover;
+   }
+   background-color: $butn; 
+}
+section.cart{
+   color:$first;
+}
+.full-cart-btn{
+   border:solid;
+   text-align: center;
+   border-color: red;
+   color: red;
+   &:hover{
+      background-color: red;
+      color:white;
+   }
+}

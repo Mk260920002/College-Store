@@ -29,3 +29,26 @@ section.hero {
   background-color: red;
   color: white;
 }
+
+.primary-btn {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(238, 9, 9);
+}
+.primary-btn:hover {
+  background-color: rgb(232, 124, 124);
+}
+
+section.cart {
+  color: rgb(232, 124, 124);
+}
+
+.full-cart-btn {
+  border: solid;
+  text-align: center;
+  border-color: red;
+  color: red;
+}
+.full-cart-btn:hover {
+  background-color: red;
+  color: white;
+}
