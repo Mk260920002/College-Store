@@ -20,19 +20,21 @@
     >
       <h1 class="text-xl font-bold text-center">Menu</h1>
       <div class="grid grid-cols-4  col-gap-10 row-gap-8 ml-10">
+          <% for (let index = 0; index < items.length; index++) {
+            const element = items[index];
+            %>    
         <div class="my-6 w-64">
           <img
             class="rounded-md h-40 mx-auto mb-4"
-            src="img/rasgoola.jpg"
-            alt=""
-          />
+            src="img/<%=element.img%>"
+            alt=""/>
           <div>
             <div class="font-bold text-xl text-center mb-3">
-              <h2>Malai Peda</h2>
+              <h2><%=element.P_name%></h2>
             </div>
             <div class="items-center flex justify-around">
               <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
+                ><span>&#8377;</span><span></span><%= element.Price %> </span
               >
               <button
                 class="card-button px-3 py-1 items-center rounded-full text-xl"
@@ -42,257 +44,10 @@
             </div>
           </div>
         </div>
+     <% } %>
+        
 
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img/aloo_paratha.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Aloo Paratha</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img/Chickencurry.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Chicken Curry</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img/panipuri.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Pani Puri</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img/pasta.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3"><h2>Pasta</h2></div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Chicken_Biryani.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Chicken Biryani</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Chicken_skewers.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Chicken Skewers</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Mutton_Kheema.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Mutton Kheema</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Paneer_Butter_Masala.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Paneer Butter Masala</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Paneer_Pulao.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Paneer Pulao</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Paneer Biryani.jpg"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Paneer Biryani</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-6 w-64">
-          <img
-            class="rounded-md h-40 mx-auto mb-4"
-            src="img\Gulabjamun.png"
-            alt=""
-          />
-          <div>
-            <div class="font-bold text-xl text-center mb-3">
-              <h2>Gulab Jamun</h2>
-            </div>
-            <div class="items-center flex justify-around">
-              <span class="font-bold text-lg mx-3"
-                ><span>&#8377;</span><span></span>250</span
-              >
-              <button
-                class="card-button px-3 py-1 items-center rounded-full text-xl"
-              >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
+    
     </section>
- 
+  
