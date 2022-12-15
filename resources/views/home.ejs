@@ -36,10 +36,10 @@
               <span class="font-bold text-lg mx-3"
                 ><span>&#8377;</span><span></span><%= element.Price %> </span
               >
-              <button
+              <button data-item="<%= JSON.stringify(element)%>"
                 class="card-button px-3 py-1 items-center rounded-full text-xl"
               >
-                <a href=""><span class="mx-2">+</span><span>Add</span></a>
+               <span class="mx-2">+</span><span>Add</span>
               </button>
             </div>
           </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Food Crab</title>
-   
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
     <link class="logo-img" rel="icon" href="img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,13 +28,13 @@
       </ul>
 
       <div>
-        <ul class="flex justify-between">
+        <ul class="flex justify-between items-center
           <li class="mx-2"><a href="/">Menu</a></li>
           <li class="mx-2"><a href="/login">login</a></li>
           <li class="mx-2"><a href="/register">Register</a></li>
           <li class="mx-2">
-            <a href="/cart">
-              <img style="width: 30px; height: 30px" src="img/cart.png" alt=""
+            <a href="/cart" class="flex items-center " > <span  id="totalQty" class="px-2 font-bold text-2xl text-amber-400"> <%= session.cart?session.cart.totalqty:0  %>  </span>
+              <img class="rounded-full"style=" height:50px; weidth:60px" src="img/cart.png" alt=""
             /></a>
           </li>
         </ul>

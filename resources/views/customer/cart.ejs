@@ -1,84 +1,57 @@
 <section class="cart font-sans">
-<!-- <div class="empty-cart py-1 font-sans">
+ <% if(!session.cart){ %>
+<div class="empty-cart py-1 font-sans">
     <h1 class="  text-center text-2xl">Your cart is empty</h1>
     <h2 class=" pb-2 text-center text-lg">You can go to home page to view more items</h2>
     <hr>
  <img class="w-2/5 mx-auto" src="img/empty-cart.jpg" alt="">
  <hr>
-</div> -->
+</div>
+<% } %> 
+<% if(session.cart) { %> 
 <div class="full-cart ">
     <h1 class="text-center text-2xl py-2">Available items in cart</h1>
     <hr>
+    <% for(let element of Object.values(session.cart.items)){ %>
+      
+    
+      
+   
     <div class="flex items-center justify-between px-60">
     <div class=" flex py-4 items-center" >
   <div>
-    <img class="w-32 " src="img/panipuri.jpg" alt="">
+    <img class="w-32 " src="img/<%=element.item.img%>" alt="">
   </div>
    <div class="mx-6">
-    <h2>Pani Puri</h2>
-   </div>
-   </div>
-   <div class="flex items-center justify-between">
-   <div class="pr-32">
-    <span>₹250</span> 
+    <h2><%=element.item.P_name%></h2>
    </div>
    <div>
-    <button class="card-button px-3 py-1 items-center rounded-full text-xl">
+      <span class="pr-1">Qty:</span><span class="mr-2"> <%= element.qty %> </span>
+    </div>
+   </div>
+   <div class="flex items-center justify-between">
+    
+   <div class="pr-32">
+    <span>₹<%= element.item.Price %> </span> 
+   </div>
+   <div>
+    <button id="delete-item" class="card-button px-3 py-1 items-center rounded-full text-xl">
                 <a href=""><span class="mx-2">-</span><span>less</span></a>
     </button>
 </div>
 </div>
 </div>
 
-<div class="flex items-center justify-between px-60">
-  <div class=" flex py-4 items-center" >
-<div>
-  <img class="w-32 " src="img/panipuri.jpg" alt="">
-</div>
- <div class="mx-6">
-  <h2>Pani Puri</h2>
- </div>
- </div>
- <div class="flex items-center justify-between">
- <div class="pr-32">
-  <span>₹250</span> 
- </div>
- <div>
-  <button class="card-button px-3 py-1 items-center rounded-full text-xl">
-              <a href=""><span class="mx-2">-</span><span>less</span></a>
-  </button>
-</div>
-</div>
-</div>
+<% }; %> 
 
-<div class="flex items-center justify-between px-60">
-  <div class=" flex py-4 items-center" >
-<div>
-  <img class="w-32 " src="img/panipuri.jpg" alt="">
-</div>
- <div class="mx-6">
-  <h2>Pani Puri</h2>
- </div>
- </div>
- <div class="flex items-center justify-between">
- <div class="pr-32">
-  <span>₹250</span> 
- </div>
- <div>
-  <button class="card-button px-3 py-1 items-center rounded-full text-xl">
-              <a href=""><span class="mx-2">-</span><span>less</span></a>
-  </button>
-</div>
-</div>
-</div>
   <hr>
 <div class=" px-60 flex justify-between py-2">
   <div>
-   <span >Total Amount </span> 
+   <span >Total Price </span> 
   </div>
   
   <div>
-    <span >₹750</span>
+    <span ><%= session.cart?session.cart.totalPrice:0  %>  </span>
   </div>
   <div>
     <button class="card-button px-3 py-1 items-center rounded-full text-xl"><a href="/customer_adress">Proceed</a></button>
@@ -86,5 +59,5 @@
 </div>
   </div>
 </div>
-
+<% } %> 
 </section>
