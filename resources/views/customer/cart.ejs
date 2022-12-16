@@ -35,8 +35,8 @@
     <span>₹<%= element.item.Price %> </span> 
    </div>
    <div>
-    <button id="delete-item" class="card-button px-3 py-1 items-center rounded-full text-xl">
-                <a href=""><span class="mx-2">-</span><span>less</span></a>
+    <button data-item="<%= element._id %>"  id="delete-item" class="card-button px-3 py-1 items-center rounded-full text-xl">
+                <span class="mx-2">-</span><span>less</span>
     </button>
 </div>
 </div>

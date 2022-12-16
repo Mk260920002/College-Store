@@ -1,124 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/alert/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/alert/index.js ***!
-  \*************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-if (typeof window !== 'undefined' && typeof window.alert === 'function') {
-  module.exports = window.alert
-} else {
-  module.exports = __webpack_require__(/*! ./node */ "./node_modules/alert/node.js")
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/alert/node.js":
-/*!************************************!*\
-  !*** ./node_modules/alert/node.js ***!
-  \************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var __dirname = "/";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
-const { execSync, spawn } = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'child_process'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-const { platform } = process
-const { join } = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'path'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-const isProgramInstalled = __webpack_require__(/*! is-program-installed */ "./node_modules/is-program-installed/index.js")
-const windowsScript = join(__dirname, 'msgbox.vbs')
-
-const execCmd = (cmds) => spawn(cmds[0], cmds.splice(1))
-
-const unixPrograms = [
-  'kdialog',
-  'zenity',
-  'yad',
-  'notify-send',
-  'xmessage',
-  'dialog',
-  'whiptail'
-]
-
-const bestUnixProgram = unixPrograms.filter(isProgramInstalled)[0] || 'console'
-
-const cscript = (s) => ['cscript', windowsScript, s]
-const msg = (str) => ['msg', '"%username%"', str]
-const zenity = (s) => ['zenity', '--info', '--text', s]
-const yad = (s) => ['yad', '--text', s, '--button', 'OK']
-const notifySend = (s) => ['notify-send', s]
-const xmessage = (s) => ['xmessage', s]
-const dialog = (s) => ['dialog', '--msgbox', s, '10', '30']
-const whiptail = (s) => ['whiptail', '--msbox', s, '10', '30']
-const kdialog = (s) => ['kdialog', '--msgbox', s]
-const osascript = (s) => [
-  'osascript',
-  '-e',
-  `tell app "System Events" to display dialog "${s}" buttons "OK"`
-]
-
-const hasCscript =
-  platform.startsWith('win') &&
-  (() => {
-    try {
-      execSync('cscript')
-      return true
-    } catch {
-      return false
-    }
-  })()
-
-const nameMap = {
-  console: console.log,
-  cscript,
-  dialog,
-  kdialog,
-  msg,
-  'notify-send': notifySend,
-  osascript,
-  whiptail,
-  xmessage,
-  yad,
-  zenity
-}
-
-const getAlert = (input = '', thingToUse = '') => {
-  const execInput = (cmd) => execCmd(cmd(input))
-
-  const pickFromNameMap = (option = bestUnixProgram) => {
-    if (option !== 'console') {
-      if (nameMap[option]) {
-        return execInput(nameMap[option])
-      }
-    }
-    return console.log(input)
-  }
-
-  if (thingToUse) {
-    return pickFromNameMap(thingToUse)
-  }
-
-  switch (platform) {
-    case 'linux':
-    case 'freebsd':
-    case 'sunos':
-      return pickFromNameMap(bestUnixProgram)
-    case 'darwin':
-      return execInput(osascript)
-    case 'win32':
-      return hasCscript ? execInput(cscript) : execInput(msg)
-    default:
-      return console.log(input)
-  }
-}
-
-module.exports = process.env.DISABLE_ALERT !== '1' ? getAlert : () => {}
-
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -127,14 +9,13 @@ module.exports = process.env.DISABLE_ALERT !== '1' ? getAlert : () => {}
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var alert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alert */ "./node_modules/alert/index.js");
-/* harmony import */ var alert__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(alert__WEBPACK_IMPORTED_MODULE_0__);
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 
 var cart = document.querySelectorAll('.card-button');
+var deleteItem = document.querySelectorAll('#delete');
+// for adding item in cart
 function updateCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('./update-cart', item).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('./update-cart', item).then(function (res) {
     document.querySelector('#totalQty').innerText = res.data.totalqty;
   });
 }
@@ -147,6 +28,23 @@ var _loop = function _loop(i) {
 };
 for (var i = 0; i < cart.length; i++) {
   _loop(i);
+}
+// for deleting item in cart
+function deleteCart(item) {
+  axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('./delete-cart', item).then(function (res) {
+    console.log(res);
+  });
+}
+var _loop2 = function _loop2(_i) {
+  var btn = deleteItem[_i];
+  btn.addEventListener('click', function (e) {
+    var item = btn.dataset.item;
+    console.log(item);
+    deleteCart(item);
+  });
+};
+for (var _i = 0; _i < deleteItem.length; _i++) {
+  _loop2(_i);
 }
 
 /***/ }),
@@ -2219,113 +2117,6 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ "./node_modules/is-program-installed/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/is-program-installed/index.js ***!
-  \****************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
-const { readdirSync } = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-const { execSync } = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'child_process'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-
-const opts = {
-  stdio: 'ignore'
-}
-const exec = (cmd) => execSync(cmd, opts)
-
-const isUnixInstalled = (program) => {
-  try {
-    exec(`hash ${program} 2>/dev/null`)
-    return true
-  } catch {
-    return false
-  }
-}
-
-const isDirectory = (path) => {
-  try {
-    readdirSync(path)
-    return true
-  } catch {
-    return false
-  }
-}
-const isDotDesktopInstalled = (program) => {
-  const dirs = [
-    process.env.XDG_DATA_HOME && process.env.XDG_DATA_HOME + '/applications',
-    process.env.HOME && process.env.HOME + '/.local/share/applications',
-    '/usr/share/applications',
-    '/usr/local/share/applications'
-  ]
-    .filter(Boolean)
-    .filter(isDirectory)
-
-  const trimExtension = (x) => x.replace(/\.desktop$/, '')
-  const desktopFiles = dirs
-    .flatMap((x) => readdirSync(x))
-    .filter((x) => x.endsWith('.desktop'))
-    .map(trimExtension)
-
-  const programTrimmed = trimExtension(program)
-  return desktopFiles.includes(programTrimmed)
-}
-
-const isMacInstalled = (program) => {
-  try {
-    exec(`osascript -e 'id of application "${program}"' 2>&1>/dev/null`)
-    return true
-  } catch {
-    return false
-  }
-}
-
-const isWindowsInstalled = (program) => {
-  // Try a couple variants, depending on execution environment the .exe
-  // may or may not be required on both `where` and the program name.
-  const attempts = [
-    `where ${program}`,
-    `where ${program}.exe`,
-    `where.exe ${program}`,
-    `where.exe ${program}.exe`
-  ]
-
-  let success = false
-  for (const a of attempts) {
-    try {
-      exec(a)
-      success = true
-    } catch {}
-  }
-
-  return success
-}
-
-const sanitize = (program) => {
-  // from https://github.com/parshap/node-sanitize-filename/ licensed WTFPL/ISC
-  /* eslint-disable no-useless-escape,no-control-regex */
-  const illegalRe = /[\/\?<>\\:\*\|"]/g
-  const controlRe = /[\x00-\x1f\x80-\x9f]/g
-  const reservedRe = /^\.+$/
-  const probablyTwoThingsRe = /\&\&/g
-  /* eslint-enable no-useless-escape,no-control-regex */
-  return program
-    .replace(illegalRe, '')
-    .replace(controlRe, '')
-    .replace(reservedRe, '')
-    .replace(probablyTwoThingsRe, '')
-}
-
-module.exports = (program) => [
-  isUnixInstalled,
-  isMacInstalled,
-  isWindowsInstalled,
-  isDotDesktopInstalled
-].some((f) => f(sanitize(program)))
-
-
-/***/ }),
-
 /***/ "./node_modules/isarray/index.js":
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
@@ -2350,200 +2141,6 @@ module.exports = Array.isArray || function (arr) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/***/ ((module) => {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
 
 
 /***/ }),
@@ -6529,18 +6126,6 @@ const toJSONObject = (obj) => {
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

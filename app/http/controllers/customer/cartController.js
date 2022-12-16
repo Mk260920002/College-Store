@@ -22,6 +22,7 @@ function cartController(){
                 cart.totalPrice=req.body.Price+cart.totalPrice;
              }
             else{
+                 
                 cart.items[req.body._id].qty=cart.items[req.body._id].qty+1;
                 cart.totalqty=cart.totalqty+1;
                 cart.totalPrice=req.body.Price+cart.totalPrice;
@@ -30,6 +31,16 @@ function cartController(){
           
          return res.json({totalqty:cart.totalqty});
          
+        },
+        delete_cart:(req,res)=>{
+            let cart=req.session.cart;
+            cart.items[req.body_id].qty=cart.items[req.body_id].qty-1;
+            cart.totalPrice=cart.totalPrice-req.body.Price;
+            cart.totalqty=cart.totalqty-1;
+            if(cart.items[req.body._id].qty==0){
+              delete cart.items[req.body._id];
+            }
+            return res.json(cart);
         }
     }
 } 
