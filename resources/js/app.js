@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-let cart = document.querySelectorAll('.card-button');
-let deleteItem=document.querySelectorAll('#delete')
+let cart = document.querySelectorAll('#add-btn');
+let deleteItem=document.querySelectorAll('#delete-btn')
 // for adding item in cart
 function updateCart(item){
    axios.post('./update-cart',item).then(res=>{
@@ -20,14 +20,17 @@ for(let i=0;i<cart.length;i++){
 // for deleting item in cart
 function deleteCart(item){
    axios.post('./delete-cart',item).then(res=>{
-      console.log(res);
+   
+    
+  
    })
 }
 for(let i=0;i<deleteItem.length;i++){
   let btn=deleteItem[i];
   btn.addEventListener('click',(e)=>{
-    let item=btn.dataset.item;
-    console.log(item);
-      deleteCart(item);
+    let item=JSON.parse(btn.dataset.item);
+    deleteCart(item);
+  
+      
   })
 }

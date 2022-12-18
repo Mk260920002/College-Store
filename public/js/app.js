@@ -11,8 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 
-var cart = document.querySelectorAll('.card-button');
-var deleteItem = document.querySelectorAll('#delete');
+var cart = document.querySelectorAll('#add-btn');
+var deleteItem = document.querySelectorAll('#delete-btn');
 // for adding item in cart
 function updateCart(item) {
   axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('./update-cart', item).then(function (res) {
@@ -31,15 +31,12 @@ for (var i = 0; i < cart.length; i++) {
 }
 // for deleting item in cart
 function deleteCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('./delete-cart', item).then(function (res) {
-    console.log(res);
-  });
+  axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('./delete-cart', item).then(function (res) {});
 }
 var _loop2 = function _loop2(_i) {
   var btn = deleteItem[_i];
   btn.addEventListener('click', function (e) {
-    var item = btn.dataset.item;
-    console.log(item);
+    var item = JSON.parse(btn.dataset.item);
     deleteCart(item);
   });
 };

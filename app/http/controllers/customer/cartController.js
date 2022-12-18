@@ -1,3 +1,5 @@
+const session = require("express-session");
+
 function cartController(){
     return {
         cart: (req,res)=>{
@@ -34,12 +36,23 @@ function cartController(){
         },
         delete_cart:(req,res)=>{
             let cart=req.session.cart;
-            cart.items[req.body_id].qty=cart.items[req.body_id].qty-1;
-            cart.totalPrice=cart.totalPrice-req.body.Price;
+            
+           
+            if(req.session.cart){
+            cart.items[req.body.item._id].qty=cart.items[req.body.item._id].qty-1;
+            cart.totalPrice=cart.totalPrice-req.body.item.Price;
             cart.totalqty=cart.totalqty-1;
-            if(cart.items[req.body._id].qty==0){
-              delete cart.items[req.body._id];
+            if(cart.items[req.body.item._id].qty==0){
+              delete cart.items[req.body.item._id];
             }
+            
+            if(cart.totalqty==0){
+                
+                delete req.session.cart;
+              
+            }
+        }
+        
             return res.json(cart);
         }
     }
