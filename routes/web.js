@@ -10,6 +10,7 @@ app.get('/register',authController().register)
 app.get('/cart',cartController().cart)
 app.post('/update-cart',cartController().update)
 app.post('/delete-cart',cartController().delete_cart)
+app.post('/register',authController().postRegister)
 app.get('/customer_adress',(req,res)=>{
     res.render('customer/adress.ejs')
 })
