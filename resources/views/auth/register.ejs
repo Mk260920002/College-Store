@@ -17,10 +17,13 @@
       <div class="-space-y-px shadow-sm">
         <div>
           <% if(messages.err){ %> 
-          <h4 class="text-center text-red-500 my-2 text-sm"><%= messages.err %></h4>
+          <h4 class="text-center text-red-600 font-bold my-2 text-sm"><%= messages.err %></h4>
           <% } %> 
           <label for="name" class="sr-only py-4">Name</label>
           <input
+          <% if(messages.name) {%> 
+             value="<%= messages.name  %> "
+          <% }%>  
             id="name"
             name="name"
             type="text"
@@ -63,13 +66,13 @@
               <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
             </div> -->
 
-        <div class="text-sm">
-          <a
-            href="/register"
-            class="font-medium text-indigo-600 hover:text-indigo-500"
-            >I have'nt any account</a
-          >
-        </div>
+            <div class="text-sm">
+              <a
+                href="/login"
+                class="font-medium text-indigo-600 hover:text-indigo-500"
+                >I have already an account</a
+              >
+            </div>
       </div>
 
       <div>

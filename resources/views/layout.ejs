@@ -30,8 +30,17 @@
       <div>
         <ul class="flex justify-between items-center
           <li class="mx-2"><a href="/">Menu</a></li>
-          <li class="mx-2"><a href="/login">login</a></li>
-          <li class="mx-2"><a href="/register">Register</a></li>
+          <% if(user){ %> 
+            <li class="mx-2">
+            <form id="logout" action="/logout" method="POST">
+                 <a onclick="document.getElementById('logout').submit()" href="#">logout</a>
+                </form>
+              </li>
+            <% }else{ %> 
+                 <li class="mx-2"><a href="/login">login</a></li>
+                 <li class="mx-2"><a href="/register">Register</a></li>
+              <% } %> 
+          
           <li class="mx-2">
             <a href="/cart" class="flex items-center " > <span  id="totalQty" class="px-2 font-bold text-2xl text-amber-400"> <%= session.cart?session.cart.totalqty:0  %>  </span>
               <img class="rounded-full"style=" height:50px; weidth:60px" src="img/cart.png" alt=""
