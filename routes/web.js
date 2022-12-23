@@ -4,6 +4,7 @@ const authController=require('../app/http/controllers/authController')
 const cartController=require('../app/http/controllers/customer/cartController')
 const orderController=require('../app/http/controllers/customer/orderController')
 const guest=require('../app/http/middleware/guest')
+const Orderguest=require('../app/http/middleware/Orderguest')
 function init_routes(app){
     
 app.get('/',homeController().index)
@@ -16,8 +17,9 @@ app.post('/update-cart',cartController().update)
 app.post('/delete-cart',cartController().delete_cart)
 app.post('/register',authController().postRegister)
 app.post('/customer/order',orderController().store)
-app.get('/customer_adress',(req,res)=>{
-    res.render('customer/adress.ejs')
+app.get('/customer/order',Orderguest,orderController().index)
+app.get('/customer/address',(req,res)=>{
+    res.render('customer/address.ejs')
 })
 }
 

@@ -22,6 +22,11 @@ function orderController(){
             req.flash('error','Something went wrong')
             return res.redirect('/customer_adress')
         })
+        },
+       
+       index: async (req,res)=>{
+          const item=await Order.find({customerId:req.user._id});
+          return res.render("customer/order.ejs")
         }
     }
 }
