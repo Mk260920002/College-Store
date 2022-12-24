@@ -46,7 +46,7 @@ app.use((req,res,next)=>{
 app.use(express.urlencoded({extended:true}))
 app.use(flash())
 app.use(express.json())
-app.use(express.static('public'))
+app.use(express.static(__dirname+'/public'))
 app.use(expressLayouts)
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')

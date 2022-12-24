@@ -1,9 +1,10 @@
+@import url(https://fonts.googleapis.com/css2?family=Anton&display=swap);
 nav {
   background-color: red;
 }
 
 nav li a:hover {
-  color: rgb(232, 124, 124);
+  color: rgb(187, 152, 13);
   transition: all 0.3s ease-in-out;
 }
 
@@ -16,7 +17,7 @@ section.hero button:hover {
 }
 
 section.hero {
-  background: rgb(232, 124, 124);
+  background: rgb(187, 152, 13);
 }
 
 .card-button {
@@ -39,7 +40,7 @@ section.hero {
 }
 
 section.cart {
-  color: rgb(232, 124, 124);
+  color: rgb(187, 152, 13);
 }
 
 .full-cart-btn {
@@ -51,4 +52,8 @@ section.cart {
 .full-cart-btn:hover {
   background-color: red;
   color: white;
+}
+
+body {
+  font-family: "Anton", sans-serif;
 }

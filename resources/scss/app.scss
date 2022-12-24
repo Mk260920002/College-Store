@@ -1,4 +1,5 @@
 @import "./variable";
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 nav{
 background-color: red;
 }
@@ -45,4 +46,7 @@ section.cart{
       background-color: red;
       color:white;
    }
+}
+body{
+   font-family: 'Anton', sans-serif;
 }

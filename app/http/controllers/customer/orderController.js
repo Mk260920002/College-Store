@@ -26,7 +26,8 @@ function orderController(){
        
        index: async (req,res)=>{
           const item=await Order.find({customerId:req.user._id});
-          return res.render("customer/order.ejs")
+          console.log(item)
+          return res.render("customer/order.ejs",{item:item})
         }
     }
 }
