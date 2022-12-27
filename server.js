@@ -10,6 +10,7 @@ const session=require('express-session')
 const flash=require('express-flash')
 const MongoDbStore = require('connect-mongo')
 const passport=require('passport')
+const moment=require('moment')
 // data base connection 
 const url='mongodb://localhost:27017/MDS';
 mongoose.connect(url);
@@ -41,6 +42,7 @@ passportInit(passport);
 app.use((req,res,next)=>{
     res.locals.session=req.session;
     res.locals.user=req.user;
+    res.locals.moment=moment;
     next();
 })
 app.use(express.urlencoded({extended:true}))

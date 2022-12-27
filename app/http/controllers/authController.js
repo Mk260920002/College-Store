@@ -33,7 +33,8 @@ function authController() {
             req.flash("username", req.body.email);
             return next(err);
           }
-          res.redirect("/");
+          if(req.user.role==="admin")return res.redirect('/admin/order')
+           return   res.redirect("/");
         });
       })(req, res, next);
     },
