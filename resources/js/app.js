@@ -1,7 +1,8 @@
 import axios from 'axios'
 import moment from 'moment'
-import {initAdmin} from './admin'
 
+import {initAdmin} from './admin'
+import noty from 'noty'
 let cart = document.querySelectorAll('#add-btn');
 let deleteItem=document.querySelectorAll('#delete-btn')
 
@@ -34,7 +35,7 @@ for(let i=0;i<deleteItem.length;i++){
   })
 }
 
- initAdmin();
+
 
 // order status update on order tracker
 
@@ -45,6 +46,10 @@ data=JSON.parse(data);
 let time=document.createElement('small');
 
 function updateStatus(data){
+  for(let i=0;i<sequence.length;i++){
+    sequence[i].classList.remove('current')
+    sequence[i].classList.remove('step-completed')
+  }
   let completed=true;
  for(let i=0;i<sequence.length;i++){
   let status=sequence[i].dataset.status;
@@ -68,3 +73,27 @@ function updateStatus(data){
 }
 
 updateStatus(data);
+// socket
+
+let socket=io()
+initAdmin(socket);
+// join
+if(data){
+socket.emit('join' ,`order_${data._id}`);
+}
+if(req.user){
+  socket.emit('join' ,`user_${req.user._id}`);
+}
+socket.on('orderUpdated',(result)=>{
+ const updatedOrder=data;
+   updatedOrder.status=result.status;
+   updatedOrder.updatedAt=moment().format()
+   
+   updateStatus(updatedOrder);
+   
+})
+
+let url=window.location.pathname
+if(url.includes('admin')){
+  socket.emit('join','adminRoom')
+}

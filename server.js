@@ -10,6 +10,7 @@ const session=require('express-session')
 const flash=require('express-flash')
 const MongoDbStore = require('connect-mongo')
 const passport=require('passport')
+const Emitter=require('events')
 const moment=require('moment')
 // data base connection 
 const url='mongodb://localhost:27017/MDS';
@@ -24,7 +25,9 @@ let mongoStore =  MongoDbStore.create({
     mongooseConnection : connection,
     collection: 'session'
 })
-
+// Event Emitter
+const eventEmitter=new Emitter();
+app.set('eventEmitter',eventEmitter);
 // session configuration
 app.use(session({
   secret:process.env.COOKIE_SECRET,
@@ -58,6 +61,25 @@ require('./routes/web.js')(app)
 
 
 
-app.listen(PORT,()=>{
+const server=app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`)
+})
+//socket
+const io=require('socket.io')(server);
+
+io.on('connection',(socket)=>{
+  socket.on('join',(roomNo)=>{
+    
+    socket.join(roomNo)
+  })
+})
+
+eventEmitter.on('orderUpdated',data=>{
+    io.to(`order_${data.id}`).emit('orderUpdated',data);
+})
+eventEmitter.on('orderPlaced',data=>{
+    io.to('adminRoom').emit('orderPlaced',data);
+})
+eventEmitter.on('itemsDeleted',data=>{
+    io.to(`user_${data._id}`).emit('itemsDeleted',data);
 })
