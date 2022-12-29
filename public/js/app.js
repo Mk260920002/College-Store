@@ -53,8 +53,11 @@ function initAdmin() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
+
 
 
 var cart = document.querySelectorAll('#add-btn');
@@ -62,7 +65,7 @@ var deleteItem = document.querySelectorAll('#delete-btn');
 
 // for adding item in cart
 function updateCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('./update-cart', item).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('./update-cart', item).then(function (res) {
     document.querySelector('#totalQty').innerText = res.data.totalqty;
   });
 }
@@ -78,7 +81,9 @@ for (var i = 0; i < cart.length; i++) {
 }
 // for deleting item in cart
 function deleteCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('./delete-cart', item).then(function (res) {});
+  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('./delete-cart', item).then(function (res) {
+    return res.redirect('/cart');
+  });
 }
 var _loop2 = function _loop2(_i) {
   var btn = deleteItem[_i];
@@ -90,7 +95,35 @@ var _loop2 = function _loop2(_i) {
 for (var _i = 0; _i < deleteItem.length; _i++) {
   _loop2(_i);
 }
-(0,_admin__WEBPACK_IMPORTED_MODULE_0__.initAdmin)();
+(0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)();
+
+// order status update on order tracker
+
+var input = document.querySelector('#hiddenInput');
+var sequence = document.querySelectorAll('.status-line');
+var data = input ? input.value : null;
+data = JSON.parse(data);
+var time = document.createElement('small');
+function updateStatus(data) {
+  var completed = true;
+  for (var _i2 = 0; _i2 < sequence.length; _i2++) {
+    var status = sequence[_i2].dataset.status;
+    if (completed) {
+      sequence[_i2].classList.add('step-completed');
+    }
+    if (status === data.status) {
+      time.innerText = moment__WEBPACK_IMPORTED_MODULE_0___default()(data.updatedAt).format('hh:mm A DD-MM-YY');
+      sequence[_i2].appendChild(time);
+      if (!sequence[_i2].nextElementSibling) {
+        sequence[_i2].classList.add('step-completed');
+      } else {
+        sequence[_i2].classList.add('current');
+      }
+      completed = false;
+    }
+  }
+}
+updateStatus(data);
 
 /***/ }),
 

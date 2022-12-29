@@ -1,2 +1,23 @@
-<%=item._id  %> 
-order detail page
+<section class="status ">
+<div class="container mx-auto  ">
+    <div class="w-2/3 mx-auto status-box">
+    <div class="mb-12  flex items-center justify-between mx-auto">
+        <h1 class="font-bold text-4xl py-1 px-2 ">Order Tracker</h1>
+        <h6 class="text-sm bg-slate-100 rounded-full p-1 text-red-500"><p>Order Id: <%=order._id  %></p> </h6>
+    </div>
+    <input id="hiddenInput" type="hidden" value="<%=JSON.stringify(order) %> ">
+    <ul class="">
+        <li class="text-xl status-line pb-16 font-bold" data-status="Order Placed"><img src="/img/Order Placed.png" class="w-20 h-20 mr-0.5 inline-block"> <span class="dot">Order Placed</span> </li>
+        <li class="text-xl status-line pb-16  font-bold" data-status="Preparing"><img src="/img/Preparing.png" class="w-20 h-20 mr-2 inline-block"><span class="dot">Preparing</span></li>
+        <li class="text-xl status-line pb-16 font-bold" data-status="Out for delivery"><img src="/img/Out for delivery.png" class="w-20 h-20 mr-2 inline-block"><span class="dot">Out for delivery</span></li>
+        <li class="text-xl status-line pb-16 font-bold" data-status="Delivered"><img src="/img/Delivered.png" class="w-20 h-20 mr-2 inline-block"><span class="dot">Delivered</span> </span></li> 
+        
+    </ul>
+    <div class="flex items-center justify-between ">
+        <h1 class="text-center font-bold text-xl text-red-400 uppercase  ">Total Price:<%=order.totalPrice%></h1>
+        <h1 class="text-center font-bold text-sm text-red-400 uppercase ">  Address: <%=order.address  %> </h1>
+        </div>
+</div>
+</div>
+
+</section>

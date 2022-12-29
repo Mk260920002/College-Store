@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Anton&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);
 nav {
   background-color: red;
 }
@@ -55,14 +55,77 @@ section.cart {
 }
 
 body {
-  font-family: "Anton", sans-serif;
+  font-family: "Poppins", sans-serif;
+  background: rgb(238, 225, 169);
 }
 
 .table-brdr {
   border: solid;
-  border-color: rgb(123, 122, 122);
+  border-color: rgb(139, 134, 134);
 }
 
 tbody tr td p {
   text-align: center;
+}
+
+section.status {
+  background: rgb(238, 225, 169);
+}
+
+.status-box {
+  padding: 50px 0 0;
+}
+
+.status-box ul li span:before {
+  margin: 0 12px 2px 0;
+  content: "";
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: black;
+}
+
+.status-line {
+  position: relative;
+}
+
+.status-box ul li span:after {
+  content: "";
+  background: black;
+  height: 80%;
+  width: 6px;
+  position: absolute;
+  bottom: 40px;
+  left: 90.5px;
+}
+
+.status-box ul li.step-completed span:before {
+  background-color: grey;
+}
+
+.status-box ul li.step-completed span:after {
+  background-color: grey;
+}
+
+.step-completed {
+  color: grey;
+}
+
+.status-box ul li.current span:before {
+  background-color: green;
+}
+
+.status-box ul li.current span:after {
+  background-color: green;
+}
+
+.current {
+  color: green;
+}
+
+.status-box ul li small {
+  float: right;
+  font: bold;
+  margin-top: 30px;
 }

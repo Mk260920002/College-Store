@@ -53,7 +53,8 @@ function cartController(){
             }
         }
         
-            return res.json(cart);
+           // return res.json(cart);
+           return res.redirect('/cart')
         }
     }
 } 

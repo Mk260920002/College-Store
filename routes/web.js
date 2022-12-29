@@ -22,6 +22,7 @@ app.post('/delete-cart',cartController().delete_cart)
 app.post('/register',authController().postRegister)
 app.post('/customer/order',auth,orderController().store)
 app.get('/customer/order',auth,orderController().index)
+app.get('/customer/order/:id',auth,orderController().detail)
 app.get('/admin/order',admin,AdminOrderController().index)
 app.post('/admin/order/status',admin,AdminOrderStatus().update)
 

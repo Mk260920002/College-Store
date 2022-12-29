@@ -31,6 +31,14 @@ function orderController(){
           
           return res.render("customer/order.ejs",{arr:arr})
         },
+        detail: async (req,res)=>{
+          let order=await Order.findById(req.params.id);
+          if(order.customerId.toString()===req.user._id.toString()){
+            return res.render('customer/orderDetail.ejs',{order})
+          }
+         
+          return res.redirect('/')
+        }
      
     }
 }

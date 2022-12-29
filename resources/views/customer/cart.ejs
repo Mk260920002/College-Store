@@ -1,8 +1,8 @@
 <section class="cart ">
  <% if(!session.cart){ %>
 <div class="empty-cart py-1 ">
-    <h1 class="  text-center text-2xl">Your cart is empty</h1>
-    <h2 class=" pb-2 text-center text-lg">You can go to home page to view more items</h2>
+    <h1 class="  text-center text-2xl font-bold">Your cart is empty</h1>
+    <h2 class=" pb-2 text-center text-lg font-bold">You can go home page to view more items</h2>
     <hr>
  <img class="w-2/5 mx-auto" src="img/empty-cart.jpg" alt="">
  <hr>
@@ -10,7 +10,7 @@
 <% } %> 
 <% if(session.cart) { %> 
 <div class="full-cart ">
-    <h1 class="text-center text-2xl py-2">Available items in cart</h1>
+    <h1 class="text-center text-2xl py-2">Available Items In Cart</h1>
  
      <h4 class="text-center text-green-500 text-sm">Please refresh after deletion</h4>
    
@@ -38,9 +38,11 @@
     <span>₹<%= element.item.Price %> </span> 
    </div>
    <div>
+    
     <button data-item="<%=JSON.stringify(element)  %>"  id="delete-btn" class="card-button px-3 py-1 items-center rounded-full text-xl">
                 <span class="mx-2">-</span><span>less</span>
     </button>
+  
 </div>
 </div>
 </div>
