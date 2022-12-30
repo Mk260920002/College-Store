@@ -79,6 +79,12 @@ function authController() {
           return res.redirect("/register");
         });
     },
+    // userDetail:(req,res)=>{
+    //   if(req.xhr){
+    //     return res.json(req.user._id)
+    //   }
+    //   return res.redirect('/');
+    // }
   };
 }
 module.exports = authController;

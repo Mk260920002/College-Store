@@ -4,69 +4,72 @@
     <h1 class="  text-center text-2xl font-bold">Your cart is empty</h1>
     <h2 class=" pb-2 text-center text-lg font-bold">You can go home page to view more items</h2>
     <hr>
- <img class="w-2/5 mx-auto" src="img/empty-cart.jpg" alt="">
- <hr>
+ <img class="w-2/5 mx-auto" src="img/emty-cart.png" alt="">
+ 
 </div>
 <% } %> 
 <% if(session.cart) { %> 
-<div class="full-cart ">
+  
+<div class="full-cart container mx-auto cart-container">
     <h1 class="text-center text-2xl py-2">Available Items In Cart</h1>
  
      <h4 class="text-center text-green-500 text-sm">Please refresh after deletion</h4>
    
-    <hr>
+    
+    <div class="w-3/4 mx-auto">
+      <hr class="border-solid border-2 border-slate-200 mb-2">
     <% for(let element of Object.values(session.cart.items)){ %>
       
     
       
-   
-    <div class="flex items-center justify-between px-60">
-    <div class=" flex py-4 items-center" >
-  <div>
-    <img class="w-32 " src="img/<%=element.item.img%>" alt="">
+  
+    
+    <div class=" flex  items-center mx-auto mb-4 " >
+  <div class="w-1/5">
+    <img class="w-32 rounded-md" src="img/<%=element.item.img%>" alt="">
   </div>
-   <div class="mx-6">
+   <div class="w-1/5">
     <h2><%=element.item.P_name%></h2>
    </div>
-   <div>
-      <span class="pr-1">Qty:</span><span class="mr-2"> <%= element.qty %> </span>
+   <div class="w-1/5"> 
+      <span >Qty: <%= element.qty %> </span>
     </div>
-   </div>
-   <div class="flex items-center justify-between">
+   
     
-   <div class="pr-32">
+   <div class="w-1/5">
     <span>₹<%= element.item.Price %> </span> 
    </div>
-   <div>
+   <div class="w-1/5">
     
-    <button data-item="<%=JSON.stringify(element)  %>"  id="delete-btn" class="card-button px-3 py-1 items-center rounded-full text-xl">
+    <button data-item="<%=JSON.stringify(element)  %>"  id="delete-btn" class="card-button px-2 py-1 items-center rounded-full text-xl">
                 <span class="mx-2">-</span><span>less</span>
     </button>
   
 </div>
 </div>
-</div>
 
 <% }; %> 
 
-  <hr>
-<div class=" px-60 flex justify-between py-2">
-  <div>
+  <hr class="border-solid border-2 border-slate-200">
+<div class=" mx-auto flex items-center  py-2">
+  <div class="w-1/3">
    <span >Total Price </span> 
   </div>
   
-  <div>
+  <div class="w-1/3 text-center">
     <span ><%= session.cart?session.cart.totalPrice:0  %>  </span>
  </div>
- <div>
+ <div class="w-1/3 text-center">
  <% if(user){ %> 
   
-    <button class="card-button px-3 py-1 items-center rounded-full text-xl"><a href="/customer/address">Proceed</a></button> 
+    <button class="card-button px-2 py-1 items-center rounded-full text-xl"><a href="/customer/address">Proceed</a></button> 
 
 <% } else { %> 
-  <button class="card-button px-3 py-1 items-center rounded-full text-xl"><a href="/login">Login to Proceed</a></button> 
+  <button class="card-button px-2 py-1 items-center rounded-full text-xl"><a href="/login">Login to Proceed</a></button> 
   <% }  %> 
   </div>
+</div>
+</div>
 </div>
 <% } %> 
 </section>

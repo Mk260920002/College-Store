@@ -1,16 +1,17 @@
   <section class="hero py-16">
-      <div class="container mx-auto items-center flex justify-between">
+      <div class="container mx-auto lg:px-4  items-center flex justify-between">
         <div class="w-1/2 text-center pl-30 font-serif">
           <h6 class="my-2 text-xl"><em>I know you are hungry</em></h6>
-          <h1 class="text-6xl my-4 font-extrabold">Don't Wait</h1>
+          <h1 class="text-3xl md:text-6xl my-4 font-extrabold">Don't Wait</h1>
           <button
-            class="rounded-full text-truncate text-white font-bold text-4xl py-1 px-6"
+            class="rounded-full text-truncate text-white font-bold text-3xl md:text-5xl py-1 px-3"
           >
             <a href="">Order now</a>
           </button>
         </div>
         <div class="w-1/2">
-          <img style="padding-right: 5rem" src="img/samosa.png" alt="" />
+          <!-- style="padding-right: 4rem" -->
+          <img class="" src="img/samosa.png" alt="" />
         </div>
       </div>
     </section>
@@ -19,13 +20,14 @@
       style="color: rgb(251, 13, 13)"
     >
       <h1 class="text-xl font-bold text-center">Menu</h1>
-      <div class="grid grid-cols-4  col-gap-10 row-gap-8 ml-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16 ">
           <% for (let index = 0; index < items.length; index++) {
             const element = items[index];
-            %>    
-        <div class="my-6 w-64">
+            %>  
+          <div class="mx-auto"> 
+        <div class="my-6 w-full md:w-full lg:w-64 ">
           <img
-            class="rounded-md h-40 mx-auto mb-4"
+            class="rounded-md h-40 mx-auto  "
             src="img/<%=element.img%>"
             alt=""/>
           <div>
@@ -44,6 +46,7 @@
             </div>
           </div>
         </div>
+      </div> 
      <% } %>
         
 

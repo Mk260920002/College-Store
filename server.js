@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 const express=require('express')
 const app=express()
 const path=require('path')
@@ -43,6 +44,7 @@ const passportInit=require('./app/config/passport')
 passportInit(passport);
 // global local middleware
 app.use((req,res,next)=>{
+    
     res.locals.session=req.session;
     res.locals.user=req.user;
     res.locals.moment=moment;
@@ -80,6 +82,10 @@ eventEmitter.on('orderUpdated',data=>{
 eventEmitter.on('orderPlaced',data=>{
     io.to('adminRoom').emit('orderPlaced',data);
 })
-eventEmitter.on('itemsDeleted',data=>{
-    io.to(`user_${data._id}`).emit('itemsDeleted',data);
-})
+
+
+
+
+
+
+

@@ -2,7 +2,7 @@ import axios from 'axios'
 import moment from 'moment'
 
 import {initAdmin} from './admin'
-import noty from 'noty'
+
 let cart = document.querySelectorAll('#add-btn');
 let deleteItem=document.querySelectorAll('#delete-btn')
 
@@ -24,7 +24,7 @@ for(let i=0;i<cart.length;i++){
 // for deleting item in cart
 function deleteCart(item){
    axios.post('./delete-cart',item).then(res=>{
-    return res.redirect('/cart');
+    
    })
 }
 for(let i=0;i<deleteItem.length;i++){
@@ -76,14 +76,12 @@ updateStatus(data);
 // socket
 
 let socket=io()
-initAdmin(socket);
+
 // join
 if(data){
 socket.emit('join' ,`order_${data._id}`);
 }
-if(req.user){
-  socket.emit('join' ,`user_${req.user._id}`);
-}
+
 socket.on('orderUpdated',(result)=>{
  const updatedOrder=data;
    updatedOrder.status=result.status;
@@ -95,5 +93,25 @@ socket.on('orderUpdated',(result)=>{
 
 let url=window.location.pathname
 if(url.includes('admin')){
+  initAdmin(socket);
   socket.emit('join','adminRoom')
 }
+
+// // for items deleted from cart
+
+// axios.get("/user/detail", {
+//       headers: {
+//         "X-Requested-With": "XMLHttpRequest",
+//       },
+//     })
+//     .then((user) => {
+//      //console.log(user);
+//      if(user){
+      
+//       socket.emit('join',`user_${user.data}`)
+//      }
+//     })
+
+//     socket.on('itemsDeleted',(data)=>{
+//       console.log(data);
+//     })

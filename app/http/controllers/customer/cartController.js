@@ -55,8 +55,8 @@ function cartController(){
         const eventEmitter=req.app.get('eventEmitter')
       if(cart){  eventEmitter.emit('itemsDeleted',cart); }
        
-           // return res.json(cart);
-        //    return res.redirect('/cart')
+         return res.json(cart);
+       
         }
     }
 } 
