@@ -1,4 +1,5 @@
 require('dotenv').config()
+const axios=require('axios');
 const express=require('express')
 const app=express()
 const path=require('path')
@@ -80,6 +81,26 @@ eventEmitter.on('orderUpdated',data=>{
 eventEmitter.on('orderPlaced',data=>{
     io.to('adminRoom').emit('orderPlaced',data);
 })
-eventEmitter.on('itemsDeleted',data=>{
-    io.to(`user_${data._id}`).emit('itemsDeleted',data);
-})
+
+
+axios.get("./user/detail", {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest",
+    },
+  })
+  .then((user) => {
+ // console.log(user)
+   if(user){
+    
+    eventEmitter.on('itemsDeleted',data=>{
+        console.log(data)
+    
+        io.to(`user_${req.user._id}`).emit('itemsDeleted',data);
+    })
+    
+   }
+  });
+    
+    
+ 
+

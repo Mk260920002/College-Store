@@ -41,7 +41,7 @@ function cartController(){
             if(req.session.cart){
             cart.items[req.body.item._id].qty=cart.items[req.body.item._id].qty-1;
             cart.totalPrice=cart.totalPrice-req.body.item.Price;
-            cart.totalqty=cart.totalqty-1;
+            cart.totalqty=cart.totalqty-1; 
             if(cart.items[req.body.item._id].qty==0){
               delete cart.items[req.body.item._id];
             }
@@ -52,11 +52,10 @@ function cartController(){
               
             }
         }
+        
         const eventEmitter=req.app.get('eventEmitter')
       if(cart){  eventEmitter.emit('itemsDeleted',cart); }
-       
-           // return res.json(cart);
-        //    return res.redirect('/cart')
+     
         }
     }
 } 

@@ -3,6 +3,7 @@ import moment from 'moment'
 
 import {initAdmin} from './admin'
 import noty from 'noty'
+import { ConnectionStates } from 'mongoose';
 let cart = document.querySelectorAll('#add-btn');
 let deleteItem=document.querySelectorAll('#delete-btn')
 
@@ -81,9 +82,7 @@ initAdmin(socket);
 if(data){
 socket.emit('join' ,`order_${data._id}`);
 }
-if(req.user){
-  socket.emit('join' ,`user_${req.user._id}`);
-}
+
 socket.on('orderUpdated',(result)=>{
  const updatedOrder=data;
    updatedOrder.status=result.status;
@@ -97,3 +96,58 @@ let url=window.location.pathname
 if(url.includes('admin')){
   socket.emit('join','adminRoom')
 }
+
+// cart items deletion realtime through socket.io
+
+let div=document.querySelector('.wrapper')
+function createCrtMarup(cart){
+  let arr= Object.values(cart.items);
+  return arr
+    .map((element) => {
+      return `
+      <div class="flex items-center justify-between px-60">
+      <div class=" flex py-4 items-center" >
+    <div>
+      <img class="w-32 " src="img/${element.item.img}" alt="">
+    </div>
+     <div class="mx-6">
+      <h2>${element.item.P_name}</h2>
+     </div>
+     <div>
+        <span class="pr-1">Qty:</span><span class="mr-2"> ${element.qty} </span>
+      </div>
+     </div>
+     <div class="flex items-center justify-between">
+      
+     <div class="pr-32">
+      <span>₹${element.item.Price} </span> 
+     </div>
+     <div>
+      
+      <button data-item="${JSON.stringify(element)}"  id="delete-btn" class="card-button px-1 py-1 items-center rounded-md text-sm">
+                  <span class="inline-block">- less</span>
+      </button>
+    
+  </div>
+  </div>
+  </div>
+      `
+  }).join('')
+}
+// now i am going to do agax call ag get requext
+
+axios.get("./user/detail", {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    })
+    .then((user) => {
+   // console.log(user)
+     if(user){
+      socket.emit('join' ,`user_${user._id}`);
+      
+     }
+    });
+socket.on('itemsDeleted',cart=>{
+  console.log(cart);
+})

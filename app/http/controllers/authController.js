@@ -34,6 +34,7 @@ function authController() {
             return next(err);
           }
           if(req.user.role==="admin")return res.redirect('/admin/order')
+          
            return   res.redirect("/");
         });
       })(req, res, next);
@@ -79,6 +80,12 @@ function authController() {
           return res.redirect("/register");
         });
     },
+    userDetail:(req,res)=>{
+      if(req.xhr){
+        return res.json(req.user);
+      }
+      else return res.redirect('/');
+    }
   };
 }
 module.exports = authController;

@@ -25,7 +25,7 @@ app.get('/customer/order',auth,orderController().index)
 app.get('/customer/order/:id',auth,orderController().detail)
 app.get('/admin/order',admin,AdminOrderController().index)
 app.post('/admin/order/status',admin,AdminOrderStatus().update)
-
+app.get('/user/detail',auth,authController().userDetail)
 app.get('/customer/address',auth,(req,res)=>{
     res.render('customer/address.ejs')
 })

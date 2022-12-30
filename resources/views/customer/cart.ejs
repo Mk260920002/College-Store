@@ -4,7 +4,7 @@
     <h1 class="  text-center text-2xl font-bold">Your cart is empty</h1>
     <h2 class=" pb-2 text-center text-lg font-bold">You can go home page to view more items</h2>
     <hr>
- <img class="w-2/5 mx-auto" src="img/empty-cart.jpg" alt="">
+ <img class="w-2/5 mx-auto" src="img/emty-cart.png" alt="">
  <hr>
 </div>
 <% } %> 
@@ -15,6 +15,7 @@
      <h4 class="text-center text-green-500 text-sm">Please refresh after deletion</h4>
    
     <hr>
+    <div class="wrapper">
     <% for(let element of Object.values(session.cart.items)){ %>
       
     
@@ -39,8 +40,8 @@
    </div>
    <div>
     
-    <button data-item="<%=JSON.stringify(element)  %>"  id="delete-btn" class="card-button px-3 py-1 items-center rounded-full text-xl">
-                <span class="mx-2">-</span><span>less</span>
+    <button data-item="<%=JSON.stringify(element)  %>"  id="delete-btn" class="card-button px-1 py-1 items-center rounded-md text-sm">
+                <span class="inline-block">- less</span>
     </button>
   
 </div>
@@ -48,7 +49,7 @@
 </div>
 
 <% }; %> 
-
+</div>
   <hr>
 <div class=" px-60 flex justify-between py-2">
   <div>
@@ -68,5 +69,7 @@
   <% }  %> 
   </div>
 </div>
+
 <% } %> 
+</div>
 </section>
