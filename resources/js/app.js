@@ -81,7 +81,9 @@ let socket=io()
 if(data){
 socket.emit('join' ,`order_${data._id}`);
 }
-
+if(req.user){
+  socket.emit('join' ,`user_${req.user._id}`);
+}
 socket.on('orderUpdated',(result)=>{
  const updatedOrder=data;
    updatedOrder.status=result.status;
