@@ -14,7 +14,7 @@ const passport=require('passport')
 const Emitter=require('events')
 const moment=require('moment')
 // data base connection 
-const url='mongodb://localhost:27017/MDS';
+const url=process.env.MONGO_CONNECTION_URL;
 mongoose.connect(url);
 const connection=mongoose.connection;
 connection.once('open',()=>{
@@ -59,7 +59,9 @@ app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
 
 require('./routes/web.js')(app)
-
+app.use((req,res)=>{
+  res.status(404).render('error/404.ejs')
+})
 
 
 

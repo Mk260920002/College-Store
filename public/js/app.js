@@ -153,25 +153,6 @@ if (url.includes('admin')) {
   socket.emit('join', 'adminRoom');
 }
 
-// // for items deleted from cart
-
-// axios.get("/user/detail", {
-//       headers: {
-//         "X-Requested-With": "XMLHttpRequest",
-//       },
-//     })
-//     .then((user) => {
-//      //console.log(user);
-//      if(user){
-
-//       socket.emit('join',`user_${user.data}`)
-//      }
-//     })
-
-//     socket.on('itemsDeleted',(data)=>{
-//       console.log(data);
-//     })
-
 /***/ }),
 
 /***/ "./node_modules/base64-js/index.js":
