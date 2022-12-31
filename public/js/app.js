@@ -138,9 +138,6 @@ var socket = io();
 if (data) {
   socket.emit('join', "order_".concat(data._id));
 }
-if (req.user) {
-  socket.emit('join', "user_".concat(req.user._id));
-}
 socket.on('orderUpdated', function (result) {
   var updatedOrder = data;
   updatedOrder.status = result.status;
