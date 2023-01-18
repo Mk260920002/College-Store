@@ -40,7 +40,7 @@ export function initAdmin(socket) {
             <p>₹${order.totalPrice}</p>
              </td>
              <td class="table-brdr">
-            <p>${order.customerId.name}</p>
+            <p>${order.name}</p>
              </td>
              <td class="table-brdr">
             <p>${order.address}</p>
