@@ -14,7 +14,7 @@ function authController() {
         }
         return res.redirect("/login");
       });
-    },
+    }  ,
     postLogin(req, res, next) {
       passport.authenticate("local", (err, user, info) => {
         if (err) {
