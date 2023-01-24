@@ -1,4 +1,4 @@
-let emailValidator = require("deep-email-validator");
+
 let User = require("../../models/user");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
@@ -62,13 +62,7 @@ function authController() {
       async function isEmailValid(email) {
         return emailValidator.validate(email);
       }
-      const { valid, reason, validators } = await isEmailValid(email);
-      if (!valid) {
-        req.flash("err", "Please provide a valid email !!");
-        req.flash("name", name);
-
-        return res.redirect("/register");
-      }
+      
       user
         .save()
         .then((user) => {
