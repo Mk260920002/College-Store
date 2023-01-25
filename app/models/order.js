@@ -10,7 +10,7 @@ const orderSchema=  new Schema({
     address:{type:String,required:true},
     phone:{type:String,required:true},
     role:{type:String,default:"COD"},
-    status:{type:String,default:"Order Placed"}
+    status:{type:String,default:"Order_placed"}
 },{
     timestamps:true
 })

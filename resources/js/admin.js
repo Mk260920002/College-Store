@@ -53,8 +53,8 @@ export function initAdmin(socket) {
                <select  name="status" onchange="this.form.submit()" 
                class="text-basic w-full p-2.5 bg-slate-400 text-white">
                  
-                 <option value="Order placed" ${order.status=="Order placed"?"selected":""}
-                 >Order placed</option>
+                 <option value="Order_placed" ${order.status=="Order_placed"?"selected":""}
+                 >Order_placed</option>
                  <option value="Preparing" ${order.status=="Preparing"?"selected":""}
                  >Preparing</option>
                  <option value="Out for delivery" ${order.status=="Out for delivery"?"selected":""}

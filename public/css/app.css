@@ -1,2 +1,131 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);
-nav{background-color:red}nav li a:hover{color:#bb980d;transition:all .3s ease-in-out}section.hero button{background-color:#ee0909;transition:all .3s ease-in-out}section.hero button:hover{background-color:#e87c7c}section.hero{background:#bb980d}.card-button{border:solid;border-color:red;color:red;text-align:center}.card-button:hover{background-color:red;color:#fff}.primary-btn{background-color:#ee0909;transition:all .3s ease-in-out}.primary-btn:hover{background-color:#e87c7c}section.cart{color:#bb980d}.full-cart-btn{border:solid;border-color:red;color:red;text-align:center}.full-cart-btn:hover{background-color:red;color:#fff}body{background:#eee1a9;font-family:Poppins,sans-serif}.table-brdr{border:solid;border-color:#8b8686}tbody tr td p{text-align:center}section.status{background:#eee1a9}.status-box{padding:50px 0 0}.status-box ul li span:before{background-color:#000;border-radius:50%;content:"";display:inline-block;height:12px;margin:0 12px 2px 0;width:12px}.status-line{position:relative}.status-box ul li span:after{background:#000;bottom:40px;content:"";height:80%;left:90.5px;position:absolute;width:6px}.status-box ul li.step-completed span:after,.status-box ul li.step-completed span:before{background-color:grey}.step-completed{color:grey}.status-box ul li.current span:after,.status-box ul li.current span:before{background-color:green}.current{color:green}.status-box ul li small{float:right;font:700;margin-top:30px}
+nav {
+  background-color: red;
+}
+
+nav li a:hover {
+  color: rgb(187, 152, 13);
+  transition: all 0.3s ease-in-out;
+}
+
+section.hero button {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(238, 9, 9);
+}
+section.hero button:hover {
+  background-color: rgb(232, 124, 124);
+}
+
+section.hero {
+  background: rgb(187, 152, 13);
+}
+
+.card-button {
+  border: solid;
+  text-align: center;
+  border-color: red;
+  color: red;
+}
+.card-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.primary-btn {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(238, 9, 9);
+}
+.primary-btn:hover {
+  background-color: rgb(232, 124, 124);
+}
+
+section.cart {
+  color: rgb(187, 152, 13);
+}
+
+.full-cart-btn {
+  border: solid;
+  text-align: center;
+  border-color: red;
+  color: red;
+}
+.full-cart-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgb(238, 225, 169);
+}
+
+.table-brdr {
+  border: solid;
+  border-color: rgb(139, 134, 134);
+}
+
+tbody tr td p {
+  text-align: center;
+}
+
+section.status {
+  background: rgb(238, 225, 169);
+}
+
+.status-box {
+  padding: 50px 0 0;
+}
+
+.status-box ul li span:before {
+  margin: 0 12px 2px 0;
+  content: "";
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: black;
+}
+
+.status-line {
+  position: relative;
+}
+
+.status-box ul li span:after {
+  content: "";
+  background: black;
+  height: 80%;
+  width: 6px;
+  position: absolute;
+  bottom: 40px;
+  left: 90.5px;
+}
+
+.status-box ul li.step-completed span:before {
+  background-color: grey;
+}
+
+.status-box ul li.step-completed span:after {
+  background-color: grey;
+}
+
+.step-completed {
+  color: grey;
+}
+
+.status-box ul li.current span:before {
+  background-color: green;
+}
+
+.status-box ul li.current span:after {
+  background-color: green;
+}
+
+.current {
+  color: green;
+}
+
+.status-box ul li small {
+  float: right;
+  font: bold;
+  margin-top: 30px;
+}
