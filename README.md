@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 =======
 # Food-Crab
 
->>>>>>> ffe3fa63496bdd9623358306a45dae203994f24c
+94f24c
 <h1>Install </h1>
 <p>  Run Below command in your terminal     </p>
 
