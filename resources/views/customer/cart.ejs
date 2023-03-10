@@ -10,8 +10,8 @@
 <% } %> 
 <% if(session.cart) { %> 
   
-<div class="full-cart container mx-auto cart-container">
-    <h1 class="text-center text-2xl py-2">Available Items In Cart</h1>
+<div class="bg-white text-xl  mt-12 full-cart container mx-auto cart-container mb-40 ">
+    <h1 class="text-center text-3xl font-bold py-2">Available Items In Cart</h1>
  
      <h4 class="text-center text-green-500 text-sm">Please refresh after deletion</h4>
    
@@ -57,7 +57,7 @@
   </div>
   
   <div class="w-1/3 text-center">
-    <span ><%= session.cart?session.cart.totalPrice:0  %>  </span>
+    <span >₹<%= session.cart?session.cart.totalPrice:0  %>  </span>
  </div>
  <div class="w-1/3 text-center">
  <% if(user){ %> 

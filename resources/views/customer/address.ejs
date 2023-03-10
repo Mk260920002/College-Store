@@ -1,7 +1,7 @@
 
        <h1 class="font-serif font-bold text-2xl text-center text-amber-500 p-4">Enter your address</h1>
-    <div class="w-full md:w-96 md:max-w-full mx-auto p-4 font-serif">
-        <div class="p-6 border border-gray-300 sm:rounded-md">
+    <div class="bg-white w-full md:w-96 md:max-w-full mx-auto p-4 font-serif">
+        <div class="p-6 border border-gray-300 sm:rounded-md"  >
          <% if(messages.error){ %> 
           <h4 class="text-center text-red-600 font-bold text-red-500 my-2 text-sm">
             <%= messages.error %>
@@ -10,7 +10,7 @@
           <form
             action="/customer/order"
             method="POST"
-          
+            
                                           >
             <label class="block mb-6">
               <span class="text-gray-700">Your name</span>
@@ -48,7 +48,7 @@
                   focus:ring-indigo-200
                   focus:ring-opacity-50
                 "
-                placeholder="Enter your Adress"
+                placeholder="Enter your Address"
               />
             </label>
             <label class="block mb-6">
@@ -72,9 +72,10 @@
               />
             </label>
            
-                     
-            <div class="mb-6 text-center">
-              <button
+            <!-- class="mb-6 text-center" -->
+            <div class="mb-6 text-center" >
+             <button
+              
                 type="submit"
                 class="
                   h-10
@@ -88,12 +89,15 @@
                   hover:bg-indigo-800
                 "
               >
-                proceed
-              </button>
-            </div>
+              proceed
+            </button>
+             <div id="g-btn"> </div> 
+               
+          </div> 
             
           </form>
+        
         </div>
       </div>
-      
+    
 

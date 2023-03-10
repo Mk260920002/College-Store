@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);
 nav {
-  background-color: red;
+  background-color: rgb(32, 3, 3);
 }
 
 nav li a:hover {

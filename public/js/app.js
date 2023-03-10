@@ -65,19 +65,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var cart = document.querySelectorAll('#add-btn');
-var deleteItem = document.querySelectorAll('#delete-btn');
+// import { response } from "express";
+
+var cart = document.querySelectorAll("#add-btn");
+var deleteItem = document.querySelectorAll("#delete-btn");
 
 // for adding item in cart
 function updateCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('./update-cart', item).then(function (res) {
-    document.querySelector('#totalQty').innerText = res.data.totalqty;
+  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("./update-cart", item).then(function (res) {
+    document.querySelector("#totalQty").innerText = res.data.totalqty;
   });
 }
 var _loop = function _loop(i) {
   var btn = cart[i];
-  btn.addEventListener('click', function (e) {
+  btn.addEventListener("click", function (e) {
     var item = JSON.parse(btn.dataset.item);
+    alert(item.P_name + " added in cart");
     updateCart(item);
   });
 };
@@ -86,11 +89,11 @@ for (var i = 0; i < cart.length; i++) {
 }
 // for deleting item in cart
 function deleteCart(item) {
-  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('./delete-cart', item).then(function (res) {});
+  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("./delete-cart", item).then(function (res) {});
 }
 var _loop2 = function _loop2(_i) {
   var btn = deleteItem[_i];
-  btn.addEventListener('click', function (e) {
+  btn.addEventListener("click", function (e) {
     var item = JSON.parse(btn.dataset.item);
     deleteCart(item);
   });
@@ -98,32 +101,79 @@ var _loop2 = function _loop2(_i) {
 for (var _i = 0; _i < deleteItem.length; _i++) {
   _loop2(_i);
 }
+///
+//googlepay
+var tokenizationSpecification = {
+  type: 'PAYMENT_GATEWAY',
+  parameters: {
+    'gateway': 'example',
+    'gatewayMerchantId': 'exampleGatewayMerchantId'
+  }
+};
+var cardPaymentMethods = {
+  type: 'CARD',
+  parameters: {
+    allowedCardNetworks: ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"],
+    allowedCardAuthMethods: ["PAN_ONLY", "CRYPTOGRAM_3DS"]
+  }
+};
+var googlePayConfiguration = {
+  apiVersion: 2,
+  apiVersionMinor: 0,
+  allowedPaymentMethods: [cardPaymentMethods]
+};
+var googlePayClient;
+function onGooglePayLoaded() {
+  console.log('src loaded');
+  googlePayClient = new google.payments.api.PaymentsClient({
+    environment: 'TEST'
+  });
+  googlePayClient.isReadyToPay(googlePayConfiguration).then(function (response) {
+    if (response.result) {
+      createAddButton();
+    } else {
+      ///they cannot want to pay through gpay
+    }
+  })["catch"](function (error) {
+    return console.log('isReadyToPay error: ', error);
+  });
+}
+function createAddButton() {
+  var button = paymentsClient.createButton({
+    onClick: function onClick() {
+      return console.log('TODO: click handler');
+    },
+    allowedPaymentMethods: [cardPaymentMethods]
+  }); // make sure to provide an allowed payment method
+
+  document.getElementById('gpay-btn').appendChild(button);
+}
 
 // order status update on order tracker
 
-var input = document.querySelector('#hiddenInput');
-var sequence = document.querySelectorAll('.status-line');
+var input = document.querySelector("#hiddenInput");
+var sequence = document.querySelectorAll(".status-line");
 var data = input ? input.value : null;
 data = JSON.parse(data);
-var time = document.createElement('small');
+var time = document.createElement("small");
 function updateStatus(data) {
   for (var _i2 = 0; _i2 < sequence.length; _i2++) {
-    sequence[_i2].classList.remove('current');
-    sequence[_i2].classList.remove('step-completed');
+    sequence[_i2].classList.remove("current");
+    sequence[_i2].classList.remove("step-completed");
   }
   var completed = true;
   for (var _i3 = 0; _i3 < sequence.length; _i3++) {
     var status = sequence[_i3].dataset.status;
     if (completed) {
-      sequence[_i3].classList.add('step-completed');
+      sequence[_i3].classList.add("step-completed");
     }
     if (status === data.status) {
-      time.innerText = moment__WEBPACK_IMPORTED_MODULE_0___default()(data.updatedAt).format('hh:mm A DD-MM-YY');
+      time.innerText = moment__WEBPACK_IMPORTED_MODULE_0___default()(data.updatedAt).format("hh:mm A DD-MM-YY");
       sequence[_i3].appendChild(time);
       if (!sequence[_i3].nextElementSibling) {
-        sequence[_i3].classList.add('step-completed');
+        sequence[_i3].classList.add("step-completed");
       } else {
-        sequence[_i3].classList.add('current');
+        sequence[_i3].classList.add("current");
       }
       completed = false;
     }
@@ -136,18 +186,18 @@ var socket = io();
 
 // join
 if (data) {
-  socket.emit('join', "order_".concat(data._id));
+  socket.emit("join", "order_".concat(data._id));
 }
-socket.on('orderUpdated', function (result) {
+socket.on("orderUpdated", function (result) {
   var updatedOrder = data;
   updatedOrder.status = result.status;
   updatedOrder.updatedAt = moment__WEBPACK_IMPORTED_MODULE_0___default()().format();
   updateStatus(updatedOrder);
 });
 var url = window.location.pathname;
-if (url.includes('admin')) {
+if (url.includes("admin")) {
   (0,_admin__WEBPACK_IMPORTED_MODULE_1__.initAdmin)(socket);
-  socket.emit('join', 'adminRoom');
+  socket.emit("join", "adminRoom");
 }
 
 /***/ }),
@@ -27935,7 +27985,7 @@ const toJSONObject = (obj) => {
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkfoodCrab"] = self["webpackChunkfoodCrab"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkNITRAAHAR"] = self["webpackChunkNITRAAHAR"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
