@@ -5,6 +5,7 @@ const cartController=require('../app/http/controllers/customer/cartController')
 const orderController=require('../app/http/controllers/customer/orderController')
 const AdminOrderController=require('../app/http/controllers/admin/orderController')
 const AdminOrderStatus=require('../app/http/controllers/admin/orderStatus')
+
 // middleware
 const guest=require('../app/http/middleware/guest')
 const auth=require('../app/http/middleware/auth')
@@ -26,6 +27,7 @@ app.get('/customer/order/:id',auth,orderController().detail)
 app.get('/admin/order',admin,AdminOrderController().index)
 app.post('/admin/order/status',admin,AdminOrderStatus().update)
 //app.get('/user/detail',auth,authController().userDetail)
+
 app.get('/customer/address',auth,(req,res)=>{
     res.render('customer/address.ejs')
 })

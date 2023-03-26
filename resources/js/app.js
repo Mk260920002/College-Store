@@ -2,6 +2,7 @@ import axios from "axios";
 import moment from "moment";
 
 import { initAdmin } from "./admin";
+import { session } from "passport";
 // import { response } from "express";
 
 let cart = document.querySelectorAll("#add-btn");
@@ -36,83 +37,7 @@ for (let i = 0; i < deleteItem.length; i++) {
 }
 
 
-//googlepay
-onGooglePayLoaded()
-const tokenizationSpecification = {
-  type: 'PAYMENT_GATEWAY',
-  parameters: {
-    'gateway': 'example',
-    'gatewayMerchantId': 'exampleGatewayMerchantId'
-  }
-};
 
-const cardPaymentMethods={
-  type:'CARD',
-  parameters:{
-    allowedCardNetworks : ["AMEX", "DISCOVER", "INTERAC", "JCB", "MASTERCARD", "VISA"],
-    allowedCardAuthMethods : ["PAN_ONLY", "CRYPTOGRAM_3DS"],
-  }
-}
-const googlePayConfiguration ={
-  apiVersion:2,
-  apiVersionMinor:0,
-  allowedPaymentMethods:[cardPaymentMethods], 
-}
-
-let googlePayClient;
-
-
-function onGooglePayLoaded(){
-  console.log('src loaded');
-  googlePayClient=new google.payments.api.PaymentsClient({
-    environment:'TEST',
-
-  });
-  googlePayClient.isReadyToPay(googlePayConfiguration).
-  then(response=>{
-    if(response.result){
-      createAddButton();
-    }else{
-      ///they cannot want to pay through gpay
-      console.log("they cannot want to pay through gpay");
-    }
-  }).catch(error=>
-   console.log('isReadyToPay error: ',error) );
-}
-function createAddButton(){
-  const googlePayButton =
-  googlePayClient.createButton({
-    onclick:onGooglePayButtonClicked,
-  })
-document.getElementById('g-btn').appendChild(googlePayButton);
- 
-}
-
-function onGooglePayButtonClicked(){
-  const paymentDataRequest={...googlePayConfiguration};
-  paymentDataRequest.merchantInfo={
-    merchantId:'BCR2DN4TXLU4DGTC',
-    merchantName:'NITRAAHAR',
-  };
-  paymentDataRequest.transactionInfo={
-    totalPriceStatus:"FINAL",
-    totalPrice:'100',
-    currencyCode:'INR',
-    countryCode: 'IN',
-  };
-  googlePayClient.loadPaymentData(paymentDataRequest)
-  .then(paymentData => processPaymentData(paymentData))
-  .catch(error => console.error('loadPaymentData error: ',error));
-}
-function processPaymentData(paymentData){
-  fetch(ordersEndpointUrl,{
-    method:'POST',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:paymentData,
-  })
-}
 // order status update on order tracker
 
 let input = document.querySelector("#hiddenInput");
@@ -163,6 +88,29 @@ socket.on("orderUpdated", (result) => {
   updatedOrder.updatedAt = moment().format();
 
   updateStatus(updatedOrder);
+});
+// razorpay
+var orderId ;
+$(document).ready(function(){
+    var settings = {
+  "url": "/create/orderId",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "amount": session.totalPrice,
+  }),
+};
+
+//creates new orderId everytime
+$.ajax(settings).done(function (response) {
+
+  orderId=response.orderId;
+  console.log(orderId);
+  $("button").show();
+});
 });
 
 let url = window.location.pathname;
